@@ -77,7 +77,7 @@ const Mine = () => {
 					src={coin}
 					alt="coin"
 					// onClick={handleClick}
-					onTouchMove={handleTouch}
+					onTouchEnd={handleTouch}
 					className="w-[70%] cursor-pointer drop-shadow-2xl coin-button"
 				/>
 			</div>
