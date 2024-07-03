@@ -33,6 +33,7 @@ const Mine = () => {
 	// };
 
 	const handleTouch = (e: any) => {
+		e.preventDefault();
 		if (energy > 0) {
 			console.log('handleTouch', e)
 			for (let touch = 0; touch < e.touches.length; touch++) {
@@ -77,7 +78,7 @@ const Mine = () => {
 					src={coin}
 					alt="coin"
 					// onClick={handleClick}
-					onTouchEnd={handleTouch}
+					onTouchStart={handleTouch}
 					className="w-[70%] cursor-pointer drop-shadow-2xl coin-button"
 				/>
 			</div>
