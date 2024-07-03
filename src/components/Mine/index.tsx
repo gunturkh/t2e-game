@@ -17,6 +17,7 @@ const Mine = () => {
 	const [nextId, setNextId] = useState(0);
 
 	// const handleClick = (e: any) => {
+	// 	console.log('handleClick')
 	// 	if (energy > 0) {
 	// 		setValue((prev) => prev + 1);
 	// 		setEnergy((prev) => (prev > 0 ? prev - 1 : 0));
@@ -33,9 +34,9 @@ const Mine = () => {
 	// };
 
 	const handleTouch = (e: any) => {
-		e.preventDefault();
+		// e.preventDefault();
 		if (energy > 0) {
-			console.log('handleTouch', e)
+			console.log('handleTouch')
 			for (let touch = 0; touch < e.touches.length; touch++) {
 				setValue((prev) => prev + 1);
 				setEnergy((prev) => (prev > 0 ? prev - 1 : 0));
@@ -70,7 +71,7 @@ const Mine = () => {
 		<div className="w-full h-full flex flex-col justify-between py-4">
 			<LevelBar />
 			<StatusBar />
-			<div className="w-full flex items-center justify-center">
+			<div className="w-full flex items-center justify-center my-4">
 				<span className="font-bold text-[20px] xs:text-[40px] sm:text-[60px]">${value.toLocaleString()}</span>
 			</div>
 			<div className="flex items-center justify-center">
