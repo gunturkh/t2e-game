@@ -39,8 +39,8 @@ const Mine = () => {
 				setValue((prev) => prev + 1);
 				setEnergy((prev) => (prev > 0 ? prev - 1 : 0));
 
-				const { clientX: x, clientY: y } = e.touches[touch];
-				const newText: FloatingText = { id: nextId, x, y };
+				const { pageX: x, pageY: y } = e.touches[touch];
+				const newText: FloatingText = { id: nextId + touch + 1, x, y };
 				setFloatingTexts((prev) => [...prev, newText]);
 				setNextId((prev) => prev + 1);
 
@@ -77,7 +77,7 @@ const Mine = () => {
 					src={coin}
 					alt="coin"
 					// onClick={handleClick}
-					onTouchStart={handleTouch}
+					onTouchMove={handleTouch}
 					className="w-[70%] cursor-pointer drop-shadow-2xl coin-button"
 				/>
 			</div>
