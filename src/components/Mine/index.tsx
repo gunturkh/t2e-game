@@ -35,19 +35,19 @@ const Mine = () => {
 	const handleTouch = (e: any) => {
 		if (energy > 0) {
 			console.log('handleTouch', e)
-			for (let touch = 0; touch < e.touches.length; touch++) {
-				setValue((prev) => prev + 1);
-				setEnergy((prev) => (prev > 0 ? prev - 1 : 0));
+			// for (let touch = 0; touch < e.touches.length; touch++) {
+			setValue((prev) => prev + 1);
+			setEnergy((prev) => (prev > 0 ? prev - 1 : 0));
 
-				const { clientX: x, clientY: y } = e.touches[touch];
-				const newText: FloatingText = { id: nextId, x, y };
-				setFloatingTexts((prev) => [...prev, newText]);
-				setNextId((prev) => prev + 1);
+			const { clientX: x, clientY: y } = e.target;
+			const newText: FloatingText = { id: nextId, x, y };
+			setFloatingTexts((prev) => [...prev, newText]);
+			setNextId((prev) => prev + 1);
 
-				setTimeout(() => {
-					setFloatingTexts((prev) => prev.filter((text) => text.id !== newText.id));
-				}, 2000);
-			}
+			setTimeout(() => {
+				setFloatingTexts((prev) => prev.filter((text) => text.id !== newText.id));
+			}, 2000);
+			// }
 		}
 	};
 
