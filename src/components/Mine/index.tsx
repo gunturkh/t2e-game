@@ -32,6 +32,25 @@ const Mine = () => {
 		}
 	};
 
+	const handleTouch = (e: any) => {
+		if (energy > 0) {
+			console.log('handleTouch', e)
+			for (let touch = 0; touch < e.touches.length; touch++) {
+				setValue((prev) => prev + 1);
+				setEnergy((prev) => (prev > 0 ? prev - 1 : 0));
+
+				const { clientX: x, clientY: y } = e.touches[touch];
+				const newText: FloatingText = { id: nextId, x, y };
+				setFloatingTexts((prev) => [...prev, newText]);
+				setNextId((prev) => prev + 1);
+
+				setTimeout(() => {
+					setFloatingTexts((prev) => prev.filter((text) => text.id !== newText.id));
+				}, 2000);
+			}
+		}
+	};
+
 	const energyPercentage = (energy / maxEnergy) * 100;
 
 	useEffect(() => {
@@ -51,13 +70,14 @@ const Mine = () => {
 			<LevelBar />
 			<StatusBar />
 			<div className="w-full flex items-center justify-center">
-				<span className="font-bold text-[60px]">${value.toLocaleString()}</span>
+				<span className="font-bold text-[20px] xs:text-[40px] sm:text-[60px]">${value.toLocaleString()}</span>
 			</div>
 			<div className="flex items-center justify-center">
 				<img
 					src={coin}
 					alt="coin"
 					onClick={handleClick}
+					onTouchStart={handleTouch}
 					className="w-[70%] cursor-pointer drop-shadow-2xl coin-button"
 				/>
 			</div>
